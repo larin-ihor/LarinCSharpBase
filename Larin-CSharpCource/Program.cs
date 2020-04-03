@@ -10,27 +10,62 @@ namespace ДЗ_5
     {
         static void Main(string[] args)
         {
-            //FindNegativeValueInArray();
+            int numberHomeWork;
+            do
+            {
+                Console.WriteLine("Введите номер задания:\n" +
+                    "1. Определить значение и номер последнего отрицательного элемента одномерного массива размером [8] элементов.\n" +
+                    "2. В двумерном массиве в каждой строке все элементы, расположенные после максимального, заменить на 0.\n" +
+                    "3. Переделать 2ое задание с использованием массива массивов.\n" +
+                    "4. Подсчитать количество гласных в строке.\n" +
+                    "5. Заменить в строке все маленькие «а» на большие «А».\n" +
+                    "6. Массивы -  реализовать сортировку Quicksort.\n" +
+                    "7. Переставить (сортировать) слова в строке в порядке длины слова – от самыых длинных до самых коротких.\n" +
+                    "");
 
-            //RaplaceNumbersInArray();
+                int.TryParse(Console.ReadLine(), out numberHomeWork);
 
-            //FindNegativeValueInArrayOfArray();
+                switch (numberHomeWork)
+                {
+                    case 1: FindNegativeValueInArray();
+                        continue;
+                    case 2:
+                        RaplaceNumbersInArray();
+                        continue;
+                    case 3:
+                        FindNegativeValueInArrayOfArray();
+                        continue;
+                    case 4:
+                        CountVowelsInString();
+                        continue;
+                    case 5:
+                        ReplaceLittleByBigChar();
+                        continue;
+                    case 6:
+                        QuickSortOfInt();
+                        continue;
+                    case 7:
+                        QuickSortOfString();
+                        continue;
+                    default:
+                        break;
+                }
 
-            //CountVowelsInString();
+            } while (numberHomeWork != 0);
 
-            //ReplaceLittleByBigChar();
-
-            //QuickSortOfInt();
-
-            //QuickSortOfString();
-
-            Console.Read();
         }
 
         //МАССИВЫ
+        //1
         static void FindNegativeValueInArray()
         {
             int[] arr = { 5, -3, 4, 8, 5, -4, 7, 1 };
+
+            Console.WriteLine("Исходный массив:");
+            foreach (var item in arr) Console.Write(item + " ");
+            Console.WriteLine();
+            
+
             bool negativeValueIsFound = false;
             for (int i = (arr.Length - 1); i > 0; i--)
             {
@@ -42,8 +77,10 @@ namespace ДЗ_5
                 }
             }
             if (negativeValueIsFound == false) Console.WriteLine("Отрицательное значение не найдено!");
-        }
 
+            Console.WriteLine("\n");
+        }
+        //2
         static void RaplaceNumbersInArray()
         {
             int[,] arr = { { 5, 6, 8, 0, 1, 2, 4, 1 }, { 6, 9, 1, 4, 3, 7, 6, 3 } };
@@ -52,6 +89,7 @@ namespace ДЗ_5
             int columns = arr.Length / rows;
 
             //Выведем до
+            Console.WriteLine("Исходный массив:\n");
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
@@ -92,11 +130,14 @@ namespace ДЗ_5
             }
             Console.Read();
         }
-
+        //3
         static void FindNegativeValueInArrayOfArray()
         {
             //Инициализация
             int[][] arr = new int[3][];
+
+            Console.WriteLine("Исходный массив:");
+
             for (int i = 0; i < arr.Length; i++)
             {
                 //произвольная длина массива
@@ -129,13 +170,16 @@ namespace ДЗ_5
                 }
                 if (negativeValueIsFound == false) Console.WriteLine("Отрицательное значение в " + i + " массиве не найдено!");
             }
+            Console.WriteLine("\n");
         }
 
 
         //СТРОКИ
+        //4
         static void CountVowelsInString()
         {
             string str = "Вот такое предложение";
+            Console.WriteLine("Исходная строка: {0}", str);
             char[] arrChar = { 'а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е' };
 
             int nextindex = 0;
@@ -150,34 +194,54 @@ namespace ДЗ_5
                 }
                 else break;
             }
-            Console.WriteLine("Количество гласных букв: " + count);
+            Console.WriteLine("Количество гласных букв: " + count +"\n");
         }
-
+        //5
         static void ReplaceLittleByBigChar()
         {
             string str = "На горе Арарат растет виноград";
+            int prevIndex = 0;
+            string str_new = "";
+            for (int nextIndex = 0; nextIndex < str.Length; nextIndex++)
+            {
+                nextIndex = str.IndexOf('а', prevIndex);
+                if (nextIndex != -1)
+                {
+                    str_new = str_new + str.Substring(prevIndex, nextIndex-prevIndex) + 'А';
+                    nextIndex++;
+                    prevIndex = nextIndex;
+                }
+                if (nextIndex == -1)
+                {
+                    str_new = str_new + str.Substring(prevIndex);
+                    break;
+                }
+            }
 
-            str = str.Replace('а', 'А');
-
-            Console.WriteLine("Новая строка: " + str);
+            Console.WriteLine("Новая строка: " + str_new +"\n");
         }
 
 
         //СОРТИРОВКА
+        //6
         static void QuickSortOfInt()
         {
             int[] arr = { 1, 0, 3, 2 };
+            Console.WriteLine("Исходный массив:");
+            foreach (var item in arr) Console.Write(item + " ");
+            Console.WriteLine("\n");
 
             int firstElement = 0;
             int lastElement = arr.Length - 1;
 
             QuickSortArrayOfInt(arr, firstElement, lastElement);
 
+            Console.WriteLine("Результат:");
             foreach (var item in arr)
             {
-                Console.Write(item);
+                Console.Write(item +" ");
             }
-            Console.WriteLine();
+            Console.WriteLine("\n");
         }
 
         static void QuickSortArrayOfInt(int[] arr, int begin, int end)
@@ -210,9 +274,11 @@ namespace ДЗ_5
                 QuickSortArrayOfInt(arr, leftElement, end);
         }
 
+        //7
         static void QuickSortOfString()
         {
             string str = "Переставить (сортировать) слова в строке в порядке длины слова – от самыых длинных до самых коротких";
+            Console.WriteLine("Исходное предложение:\n" + str);
 
             string[] arr = str.Split(' ');
 
@@ -223,11 +289,12 @@ namespace ДЗ_5
 
             arr = arr.Reverse().ToArray();
 
+            Console.WriteLine("Результат:");
             foreach (var item in arr)
             {
                 Console.Write(item + " ");
             }
-            Console.WriteLine();
+            Console.WriteLine("\n");
         }
 
         static void QuickSortArrayOfString(string[] arr, int begin, int end)
