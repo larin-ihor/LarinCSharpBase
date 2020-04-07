@@ -25,7 +25,10 @@ namespace HomeWork
                     case 6:
                         DZ6.Start();
                         continue;
-                    
+                    case 7:
+                        DZ7.Start();
+                        continue;
+
                     default:
                         break;
                 }
