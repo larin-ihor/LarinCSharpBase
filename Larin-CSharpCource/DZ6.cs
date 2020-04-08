@@ -337,11 +337,6 @@ namespace HomeWork
             matrix[row, col] = 0; // обнулим
             System.Threading.Thread.Sleep(500);
 
-            if (steps > 19)
-            {
-                int a = 0;
-            }
-
             if (row > 8 || col > 8)
             {
                 matrix[row, col] = 8; // нарисуем
