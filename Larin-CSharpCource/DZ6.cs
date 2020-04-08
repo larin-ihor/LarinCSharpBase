@@ -313,7 +313,20 @@ namespace HomeWork
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    Console.Write("" + arr[i, j] + "  ");
+                    switch (arr[i, j])
+                    {
+                        case 8 : Console.Write("X\t");
+                            continue;
+                        case 1:
+                            Console.Write("*\t");
+                            continue;
+                        case 0:
+                            Console.Write("\t");
+                            continue;
+                        default:
+                            continue;
+                    }
+                    
                 }
                 Console.WriteLine();
             }
