@@ -226,20 +226,20 @@ namespace HomeWork
                 return;
             }
 
-            int allRates = 0;
-            int countRates = 0;
+            double allRates = 0;
+            double countRates = 0;
             
             foreach (Student student in group)
             {
                 countRates += student.Rates.Count;
 
-                foreach (int rate in student.Rates)
+                foreach (double rate in student.Rates)
                 {
                     allRates += rate;
                 }
             }
 
-            int averageRateByGroup = allRates / countRates;
+            double averageRateByGroup = allRates / countRates;
 
             Console.WriteLine("Средний бал по группе: {0}\n", averageRateByGroup);
 
