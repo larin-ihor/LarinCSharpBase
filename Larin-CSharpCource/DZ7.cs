@@ -16,7 +16,7 @@ namespace HomeWork
                 Console.WriteLine("Введите номер задания:\n" +
                     "1. Создать класс Student\n" +
                     "2. Создать класс Group.\n" +
-                    
+                    "3. HR managment.\n" +
                     "");
 
                 int.TryParse(Console.ReadLine(), out numberHomeWork);
@@ -29,7 +29,10 @@ namespace HomeWork
                     case 2:
                         UsingClassStudentGroup();
                         continue;
-                    
+                    case 3:
+                        HR();
+                        continue;
+
                     default:
                         return;
                 }
@@ -98,6 +101,11 @@ namespace HomeWork
                 System.Threading.Thread.Sleep(50);
                 std.AddRate(rand.Next(5, 10));
             }
+        }
+
+        private static void HR()
+        {
+            DZ7_dop.HR_management();
         }
     }
 
