@@ -153,15 +153,15 @@ namespace HomeWork
             {
                 foreach (var profession in company.ProfessionsList) //перебр профессий компании
                 {
-                    if (profession.Value == false) //флаг что сотридники по этой профессии еще нужны
-                    {
-                        List<Person> workers = FindWorkersByProfession(workersList, profession.Key);
+                    //if (profession.Value == false) //флаг что сотридники по этой профессии еще нужны
+                    //{
+                    List<Person> workers = FindWorkersByProfession(workersList, profession.Key);
 
-                        if (workers.Count > 0)
-                        {
-                            company.HirePerson(workers[0], profession.Key);
-                        }
+                    if (workers.Count > 0)
+                    {
+                        company.HirePerson(workers[0], profession.Key);
                     }
+                    //}
                 }
             }
         }
