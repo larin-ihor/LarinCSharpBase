@@ -58,7 +58,7 @@ namespace HomeWork
 
 
             //создание HR менеджера
-            HR_Manager HR_man = new HR_Manager("Иванова О.К.");
+            HRManager HR_man = new HRManager("Иванова О.К.");
 
             //подобрать безработных в компании
             HR_man.ArrangePeronsByProfession(workersList, companyList);
@@ -120,15 +120,14 @@ namespace HomeWork
         }
     }
 
-
-    class HR_Manager
+    class HRManager
     {
         string name;
         //int salary;
 
         public string Name { get => name; set => name = value; }
 
-        public HR_Manager(string personName)
+        public HRManager(string personName)
         {
             name = personName;
         }
