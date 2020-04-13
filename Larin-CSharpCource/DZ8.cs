@@ -14,7 +14,7 @@ namespace HomeWork
 
             MyString myStr1 = new MyString(str);
 
-            string substring = "ние";
+            MyString substring = new MyString("ние");
             Console.WriteLine("Применение метода Contains");
             Console.WriteLine($"Строка: {str}" + (myStr1.Contains(substring) ? "" : " не" ) + $" содержит строку: {substring}\n");
 
@@ -127,7 +127,7 @@ namespace HomeWork
             }
         }
 
-        public bool Contains(string str)
+        public bool Contains(MyString str)
         {
             //если подстрока длиннее исходной строки
             if (str.Length > myCharArray.Length)
