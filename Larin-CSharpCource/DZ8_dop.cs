@@ -97,7 +97,6 @@ namespace HomeWork
                 }
             }
 
-
             return isBalanced;
         }
     }
