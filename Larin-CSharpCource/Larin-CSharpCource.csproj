@@ -46,7 +46,6 @@
     <Compile Include="DZ7.cs" />
     <Compile Include="DZ7_dop.cs" />
     <Compile Include="DZ8.cs" />
-    <Compile Include="DZ8_dop.cs" />
     <Compile Include="DZ8StringExeption.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
