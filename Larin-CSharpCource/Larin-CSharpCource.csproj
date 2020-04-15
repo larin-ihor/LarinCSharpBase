@@ -49,6 +49,7 @@
     <Compile Include="DZ8StringExeption.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrelloAnalog.cs" />
     <Compile Include="Work6.cs" />
   </ItemGroup>
   <ItemGroup>
