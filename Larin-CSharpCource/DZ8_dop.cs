@@ -10,7 +10,8 @@ namespace HomeWork
     {
         public static void Start()
         {
-            string str = "ЗаполнитьЗначенияСвойств(НовыйЗаказ, МассивЗаказов[0],,'Номер,Ответственный,Проведен');";
+            //string str = "ЗаполнитьЗначенияСвойств(НовыйЗаказ, МассивЗаказов[0],,'Номер,Ответственный,Проведен');";
+            string str = "{{}})";
             Console.WriteLine("Исходная строка:\n" + str);
             bool isBalanced = Balance(str);
             Console.WriteLine($"В данной строке {(isBalanced ? "" : "не")} соблюдается баланс скобок\n");
@@ -18,12 +19,6 @@ namespace HomeWork
 
         private static bool Balance(string str)
         {
-            bool isBalanced = true;
-
-            //массив для поиска в строке
-            var arrOpened = new[] { '(', '{', '[' };
-            var arrClosed = new[] { ')', '}', ']' };
-
             //служит для сравнения парных скобок
             var parityQuotes = new Dictionary<char, char>()
             {
@@ -32,72 +27,72 @@ namespace HomeWork
                 { ']', '['},
             };
 
-            int startIndex = 0;
-            int nextIndex = 0;
-
-            //вначале вырезаем из строки парные скобки идущие подряд
-            for (int i = 0; i < str.Length; i++)
+            for (int i = 0; i < str.Length;)
             {
-                nextIndex = str.IndexOfAny(arrOpened, startIndex);
-                if (nextIndex >= 0)
+                if (NextCharIsClosed(str, i))
                 {
-                    startIndex = nextIndex+1;
-                    //ищем следущую парную скобку
-                    int parIndex = str.IndexOfAny(arrClosed, startIndex);
-                    if (str[nextIndex] == parityQuotes[str[parIndex]])
+                    return false;
+                }
+                int j;
+                for (j = i + 1; j < str.Length; j++)
+                {
+                    if (NextCharIsOpened(str, j))
                     {
-                        //чтоб потом они не мешались при сравнении заменяем из любым символом
-                        str = str.Remove(nextIndex, 1).Insert(nextIndex, "_");
-                        str = str.Remove(parIndex, 1).Insert(parIndex, "_");
-                        startIndex = parIndex + 1;
+                        i = j - 1;
+                        break;
                     }
+                    if (NextCharIsClosed(str, j))
+                    {
+                        if (str[i] == parityQuotes[str[j]])
+                        {
+                            str = str.Remove(i, 1).Insert(i, "_");
+                            str = str.Remove(j, 1).Insert(j, "_");
+                            //сбрасываем и начинаем с 0
+                            i = -1;
+                        }
+                        j++;
+                        break;
+                    }     
+                }
+                i++;
+            }
+
+            //проверка после удаления скобок
+            var arrBrackets = new[] { '(', '{', '[', ')', '}', ']' };
+            int indexOfAnyBrackets = str.IndexOfAny(arrBrackets);
+            if (indexOfAnyBrackets >= 0)
+                return false;
+            else
+                return true;
+            
+        }
+
+        private static bool NextCharIsOpened(string str, int index)
+        {
+            var arrOpened = new[] { '(', '{', '[',  };
+            for (int i = 0; i < arrOpened.Length; i++)
+            {
+                if (str[index] == arrOpened[i])
+                {
+                    return true;
                 }
             }
 
-            var openedIndecies = new List<char>();
-            var closedIndecies = new List<char>();
+            return false;
+        }
 
-            //составляем список открывающих скобок идущих подряд
-            startIndex = 0;
-            do
+        private static bool NextCharIsClosed(string str, int index)
+        {
+            var arrClosed = new[] { ')', '}', ']' };
+            for (int i = 0; i < arrClosed.Length; i++)
             {
-                nextIndex = str.IndexOfAny(arrOpened, startIndex);
-                if (nextIndex >= 0)
+                if (str[index] == arrClosed[i])
                 {
-                    openedIndecies.Add(str[nextIndex]);
-                    startIndex = nextIndex+1;
-                }
-            } while (nextIndex != -1);
-
-            //составляем список закрывающих скобок идущих подряд
-            startIndex = 0;
-            do
-            {
-                nextIndex = str.IndexOfAny(arrClosed, startIndex);
-                if (nextIndex >= 0)
-                {
-                    closedIndecies.Add(str[nextIndex]);
-                    startIndex = nextIndex + 1;
-                }
-            } while (nextIndex != -1);
-
-            //если их разное количество - то неверно
-            if (openedIndecies.Count != closedIndecies.Count)
-            {
-                isBalanced = false;
-                return isBalanced;
-            }
-
-            //сравниваем
-            for (int i = 0, j = openedIndecies.Count-1; i < openedIndecies.Count; i++, j--)
-            {
-                if (openedIndecies[j] != parityQuotes[closedIndecies[i]])
-                {
-                    break;
+                    return true;
                 }
             }
 
-            return isBalanced;
+            return false;
         }
     }
 }
