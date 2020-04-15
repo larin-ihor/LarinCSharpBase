@@ -29,7 +29,7 @@ namespace HomeWork
                         DZ7.Start();
                         continue;
                     case 8:
-                        DZ8.Start();
+                        DZ8_dop.Start();
                         continue;
 
                     default:
