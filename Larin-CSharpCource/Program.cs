@@ -32,6 +32,10 @@ namespace HomeWork
                         DZ8_dop.Start();
                         continue;
 
+                    case 10:
+                        DZ10.Start();
+                        continue;
+
                     default:
                         break;
                 }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DZ10.cs" />
     <Compile Include="DZ5.cs" />
     <Compile Include="DZ6.cs" />
     <Compile Include="DZ7.cs" />
@@ -50,7 +51,6 @@
     <Compile Include="DZ8_dop.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrelloAnalog.cs" />
     <Compile Include="Work6.cs" />
   </ItemGroup>
   <ItemGroup>
