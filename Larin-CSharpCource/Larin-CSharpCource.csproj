@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DZ10.cs" />
+    <Compile Include="DZ11.cs" />
     <Compile Include="DZ5.cs" />
     <Compile Include="DZ6.cs" />
     <Compile Include="DZ7.cs" />
