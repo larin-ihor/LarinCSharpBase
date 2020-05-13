@@ -100,7 +100,10 @@ namespace HomeWork11
                 && this.Department == ((Student)obj).Department;
         }
 
-        
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 
     class Teacher : Person
@@ -119,6 +122,11 @@ namespace HomeWork11
                 && this.Department == ((Teacher)obj).Department
                 && this.Degree == ((Teacher)obj).Degree;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 
     class HeadOfDepartment : Teacher
@@ -134,6 +142,11 @@ namespace HomeWork11
             return DZ11.IsTwoObjectIsEqualsByName<HeadOfDepartment, HeadOfDepartment>(this, (HeadOfDepartment)obj)
                 && this.Department == ((HeadOfDepartment)obj).Department
                 && this.Degree == ((HeadOfDepartment)obj).Degree;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
